@@ -17,7 +17,7 @@ public class DamageHandler : MonoBehaviour
     {
         _healthHandler.Decrease(damage);
 
-        if (_healthHandler.CurrentHealth <= 0)
+        if (_healthHandler.Current <= 0)
         {
             _dieHandler.Die();
         }
