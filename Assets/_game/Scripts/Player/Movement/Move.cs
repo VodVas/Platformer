@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    private const string Horizontal = "Horizontal";
-
+    private InputReader _inputReader;
     private Rigidbody2D _rigidbody;
 
     private void Awake()
     {
+        _inputReader = GetComponent<InputReader>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     public void DoMove(float speed)
     {
-        float moveX = Input.GetAxisRaw(Horizontal);
+        float moveX = _inputReader.HorizontalMove;
 
         Vector2 move = new Vector2(moveX * speed, _rigidbody.velocity.y);
 

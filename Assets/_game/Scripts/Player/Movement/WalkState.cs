@@ -2,43 +2,40 @@ using UnityEngine;
 
 public class WalkState : PlayerState
 {
-    private const string Horizontal = "Horizontal";
-    private const string IsWalking = "IsWalking";
-    private const string Jump = "Jump";
-    private const string Run = "Run";
-
+    private InputReader _inputReader;
     private Move _move;
 
-    public WalkState(PlayerStateMachine playerController, Move move) : base(playerController)
+    public WalkState(PlayerStateMachine playerController, Move move, InputReader inputReader) : base(playerController)
     {
         _move = move;
+        _inputReader = inputReader;
     }
 
     public override void Enter()
     {
-        _player.Animator.SetBool(IsWalking, true);
+        Player.Animator.SetBool(InputReader.IsWalking, true);
     }
 
     public override void Update()
     {
-        _move.DoMove(_player.WalkSpeed);
+        _move.DoMove(Player.WalkSpeed);
 
-        if (Input.GetAxisRaw(Horizontal) == 0)
+        if (_inputReader.HorizontalMove == 0)
         {
-            _player.ChangeState(_player.IdleState);
+            Player.ChangeState(Player.IdleState);
         }
-        else if (Input.GetButtonDown(Jump))
+        else if (_inputReader.IsJump)
         {
-            _player.ChangeState(_player.JumpState);
+            Player.ChangeState(Player.JumpState);
         }
-        else if (Input.GetButton(Run))
+        else if (_inputReader.IsRun)
         {
-            _player.ChangeState(_player.RunState);
+            Player.ChangeState(Player.RunState);
         }
     }
 
     public override void Exit()
     {
-        _player.Animator.SetBool(IsWalking, false);
+        Player.Animator.SetBool(InputReader.IsWalking, false);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     private PlayerState _currentState;
+    private InputReader _inputReader;
     private Utility _utility;
     private Jump _jump;
     private Move _move;
@@ -23,18 +24,19 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Start()
     {
+        _inputReader = GetComponent<InputReader>();
         Rigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         _utility = GetComponent<Utility>();
         _jump = GetComponent<Jump>();
         _move = GetComponent<Move>();
 
-        IdleState = new IdleState(this);
-        WalkState = new WalkState(this, _move);
-        RunState = new RunState(this, _move);
-        JumpState = new JumpState(this, _utility, _jump, _move);
+        IdleState = new IdleState(this, _inputReader);
+        WalkState = new WalkState(this, _move, _inputReader);
+        RunState = new RunState(this, _move, _inputReader);
+        JumpState = new JumpState(this, _utility, _jump, _move, _inputReader);
 
-        ChangeState(new IdleState(this));
+        ChangeState(new IdleState(this, _inputReader));
     }
 
     private void Update()

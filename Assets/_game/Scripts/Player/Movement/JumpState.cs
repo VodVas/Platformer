@@ -1,43 +1,38 @@
-using UnityEngine;
-
 public class JumpState : PlayerState
 {
-    private const string Jump = "Jump";
-    private const string Horizontal = "Horizontal";
-
     private Utility _utility;
     private Jump _jump;
     private Move _move;
+    private InputReader _inputReader;
 
-    public JumpState(PlayerStateMachine playerController, Utility utility, Jump jump, Move move) : base(playerController)
+    public JumpState(PlayerStateMachine playerController, Utility utility, Jump jump, Move move, InputReader inputReader) : base(playerController)
     {
         _utility = utility;
         _jump = jump;
         _move = move;
+        _inputReader = inputReader;
     }
 
     public override void Enter()
     {
-        _player.Animator.SetTrigger(Jump);
-        _jump.DoJump(_player.JumpForce);
+        Player.Animator.SetTrigger(InputReader.Jump);
+        _jump.DoJump(Player.JumpForce);
     }
 
     public override void Update()
     {
-        _move.DoMove(_player.WalkSpeed);
+        _move.DoMove(Player.WalkSpeed);
 
         if (_utility.IsGrounded())
         {
-            if (Input.GetAxisRaw(Horizontal) != 0)
+            if (_inputReader.HorizontalMove != 0)
             {
-                _player.ChangeState(_player.WalkState);
+                Player.ChangeState(Player.WalkState);
             }
             else
             {
-                _player.ChangeState(_player.IdleState);
+                Player.ChangeState(Player.IdleState);
             }
         }
     }
-
-    public override void Exit() { }
 }

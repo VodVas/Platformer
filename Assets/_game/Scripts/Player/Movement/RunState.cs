@@ -1,44 +1,39 @@
-using UnityEngine;
-
 public class RunState : PlayerState
 {
-    private const string Horizontal = "Horizontal";
-    private const string IsRunning = "IsRunning";
-    private const string Jump = "Jump";
-    private const string Run = "Run";
-
     private Move _move;
+    private InputReader _inputReader;
 
-    public RunState(PlayerStateMachine playerController, Move move) : base(playerController) 
+    public RunState(PlayerStateMachine playerController, Move move, InputReader inputReader) : base(playerController) 
     {
         _move = move;
+        _inputReader = inputReader;
     }
 
     public override void Enter()
     {
-        _player.Animator.SetBool(IsRunning, true);
+        Player.Animator.SetBool(InputReader.IsRunning, true);
     }
 
     public override void Update()
     {
-        _move.DoMove(_player.RunSpeed);
+        _move.DoMove(Player.RunSpeed);
 
-        if (Input.GetAxisRaw(Horizontal) == 0)
+        if (_inputReader.HorizontalMove == 0)
         {
-            _player.ChangeState(_player.IdleState);
+            Player.ChangeState(Player.IdleState);
         }
-        else if (Input.GetButtonDown(Jump))
+        else if (_inputReader.IsJump)
         {
-            _player.ChangeState(_player.JumpState);
+            Player.ChangeState(Player.JumpState);
         }
-        else if (!Input.GetButton(Run))
+        else if (_inputReader.IsRun == false)
         {
-            _player.ChangeState(_player.WalkState);
+            Player.ChangeState(Player.WalkState);
         }
     }
 
     public override void Exit()
     {
-        _player.Animator.SetBool(IsRunning, false);
+        Player.Animator.SetBool(InputReader.IsRunning, false);
     }
 }

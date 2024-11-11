@@ -17,13 +17,11 @@ public class ItemCollector : MonoBehaviour
     {
         if (other.TryGetComponent(out CollectibleItem item))
         {
-            if (item is Coin coin && !coin.IsCollected)
+            if (item is Coin coin)
             {
                 CoinCollect?.Invoke(coin);
 
                 _coinCount += coin.Amount;
-
-                coin.Collect();
             }
             else if (item is AidKit aidKit)
             {

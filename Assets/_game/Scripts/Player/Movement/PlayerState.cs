@@ -1,13 +1,13 @@
 public abstract class PlayerState
 {
-    protected PlayerStateMachine _player;
+    protected PlayerStateMachine Player;
 
     public PlayerState(PlayerStateMachine playerController)
     {
-        _player = playerController;
+        Player = playerController;
     }
 
     public abstract void Enter();
     public abstract void Update();
-    public abstract void Exit();
+    public virtual void Exit() { }
 }

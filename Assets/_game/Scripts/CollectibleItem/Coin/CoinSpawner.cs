@@ -5,20 +5,22 @@ using UnityEngine.Pool;
 
 public class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] private Coin _coinPrefab;
-
     [SerializeField] private float _respawnDelay = 5f;
+    [SerializeField] private Coin _coinPrefab;
     [SerializeField] private List<Transform> _coinTransforms;
     [SerializeField] private ItemCollector _itemCollector;
 
     private ObjectPool<Coin> _coinPool;
     private List<Vector2> _coinPositions = new List<Vector2>();
+    private WaitForSeconds _wait;
 
-    private void Start()
+    private void Awake()
     {
         _coinPool = new ObjectPool<Coin>(Create, OnGetFromPool, OnReleaseToPool, OnDestroyPoolObject, true);
 
         Init();
+
+        _wait = new WaitForSeconds(_respawnDelay);
 
         if (_itemCollector != null)
         {
@@ -56,7 +58,6 @@ public class CoinSpawner : MonoBehaviour
 
     private void OnGetFromPool(Coin coin)
     {
-        coin.Reset();
         coin.gameObject.SetActive(true);
     }
 
@@ -75,22 +76,19 @@ public class CoinSpawner : MonoBehaviour
 
     private void OnCoinCollected(Coin coin)
     {
-        if (!coin.IsCollected)
+        _coinPool.Release(coin);
+
+        int index = _coinPositions.IndexOf(coin.transform.position);
+
+        if (index != -1)
         {
-            _coinPool.Release(coin);
-
-            int index = _coinPositions.IndexOf(coin.transform.position);
-
-            if (index != -1)
-            {
-                StartCoroutine(RespawnCoinAfterDelay(index));
-            }
+            StartCoroutine(RespawnCoinAfterDelay(index));
         }
     }
 
     private IEnumerator RespawnCoinAfterDelay(int index)
     {
-        yield return new WaitForSeconds(_respawnDelay);
+        yield return _wait;
 
         Spawn(_coinPositions[index]);
     }

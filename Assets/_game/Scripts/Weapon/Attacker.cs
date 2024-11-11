@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour
 {
-    private const string IsFight = "IsFight";
-
     private Animator _animator;
+    private InputReader _inputReader;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _inputReader = GetComponent<InputReader>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (_inputReader.IsMouseButtonDown)
         {
             StartAttack();
         }
@@ -21,6 +21,6 @@ public class Attacker : MonoBehaviour
 
     private void StartAttack()
     {
-        _animator.SetBool(IsFight, true);
+        _animator.SetBool(InputReader.IsFight, true);
     }
 }
