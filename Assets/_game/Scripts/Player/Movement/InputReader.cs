@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    public const string Horizontal = "Horizontal";
+    public const string Horizontal = "Horizontal"; 
     public const string IsRunning = "IsRunning";
     public const string IsWalking = "IsWalking";
     public const string IsFight = "IsFight";

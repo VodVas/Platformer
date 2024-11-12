@@ -7,7 +7,7 @@ public class TextHider : MonoBehaviour
 
     private void Awake()
     {
-        _textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
+        _textMeshPro = GetComponent<TextMeshProUGUI>();
     }
 
     public void Disable()

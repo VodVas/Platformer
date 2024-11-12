@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
 public class HuntCircle : MonoBehaviour
 {
-    [SerializeField] private EnemyAI _enemyAI;
+    public event Action TriggerExitEvent;
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player _))
+        if (other.TryGetComponent(out Player player))
         {
-            _enemyAI.ClearPlayer();
+            TriggerExitEvent?.Invoke();
         }
     }
 }

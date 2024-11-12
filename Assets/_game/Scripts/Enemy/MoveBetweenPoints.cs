@@ -21,7 +21,7 @@ public class MoveBetweenPoints : MonoBehaviour
         if (_points.Count > 0)
         {
             MoveTarget();
-            CheckArrival();
+            MoveNextWaypoint();
         }
     }
 
@@ -32,7 +32,7 @@ public class MoveBetweenPoints : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, targetPoint, _speed * Time.deltaTime);
     }
 
-    private void CheckArrival()
+    private void MoveNextWaypoint()
     {
         Vector2 targetPoint = _points[_currentPointIndex].position;
 

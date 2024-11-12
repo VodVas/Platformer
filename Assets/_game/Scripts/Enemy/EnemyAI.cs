@@ -1,10 +1,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MoveBetweenPoints))]
+[RequireComponent(typeof(DetectCircle))]
+[RequireComponent(typeof(HuntCircle))]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float _chaseSpeed = 4f;
     [SerializeField] private float _offsetToPlayer = 2f;
+    [SerializeField] private DetectCircle _detectCircle;
+    [SerializeField] private HuntCircle _huntCircle;
 
     private MoveBetweenPoints _patrolMovement;
     private Transform _player;
@@ -21,6 +25,18 @@ public class EnemyAI : MonoBehaviour
         {
             ChasePlayer();
         }
+    }
+
+    private void OnEnable()
+    {
+        _detectCircle.TriggerEnterEvent += SetPlayer;
+        _huntCircle.TriggerExitEvent += ClearPlayer;
+    }
+
+    private void OnDisable()
+    {
+        _detectCircle.TriggerEnterEvent -= SetPlayer;
+        _huntCircle.TriggerExitEvent -= ClearPlayer;
     }
 
     public void SetPlayer(Transform player)

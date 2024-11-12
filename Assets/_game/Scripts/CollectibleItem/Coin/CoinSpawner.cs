@@ -8,7 +8,6 @@ public class CoinSpawner : MonoBehaviour
     [SerializeField] private float _respawnDelay = 5f;
     [SerializeField] private Coin _coinPrefab;
     [SerializeField] private List<Transform> _coinTransforms;
-    [SerializeField] private ItemCollector _itemCollector;
 
     private ObjectPool<Coin> _coinPool;
     private List<Vector2> _coinPositions = new List<Vector2>();
@@ -21,21 +20,11 @@ public class CoinSpawner : MonoBehaviour
         Init();
 
         _wait = new WaitForSeconds(_respawnDelay);
-
-        if (_itemCollector != null)
-        {
-            _itemCollector.CoinCollect += OnCoinCollected;
-        }
     }
 
     private void OnDisable()
     {
         _coinPool.Clear();
-
-        if (_itemCollector != null)
-        {
-            _itemCollector.CoinCollect -= OnCoinCollected;
-        }
     }
 
     private void Init()
@@ -53,17 +42,20 @@ public class CoinSpawner : MonoBehaviour
 
     private Coin Create()
     {
-        return Instantiate(_coinPrefab);
+        Coin coin = Instantiate(_coinPrefab);
+        return coin;
     }
 
     private void OnGetFromPool(Coin coin)
     {
         coin.gameObject.SetActive(true);
+        coin.CoinCollected += OnCoinCollected;
     }
 
     private void OnReleaseToPool(Coin coin)
     {
         coin.gameObject.SetActive(false);
+        coin.CoinCollected -= OnCoinCollected;
     }
 
     private void OnDestroyPoolObject(Coin coin)
@@ -78,19 +70,16 @@ public class CoinSpawner : MonoBehaviour
     {
         _coinPool.Release(coin);
 
-        int index = _coinPositions.IndexOf(coin.transform.position);
-
-        if (index != -1)
-        {
-            StartCoroutine(RespawnCoinAfterDelay(index));
-        }
+        StartCoroutine(RespawnCoinAfterDelay(coin));
     }
 
-    private IEnumerator RespawnCoinAfterDelay(int index)
+    private IEnumerator RespawnCoinAfterDelay(Coin coin)
     {
         yield return _wait;
 
-        Spawn(_coinPositions[index]);
+        Vector2 position = coin.transform.position;
+
+        Spawn(position);
     }
 
     private void Spawn(Vector2 position)

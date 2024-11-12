@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Health))]
 public class ItemCollector : MonoBehaviour
 {
     private Health _health;
     private int _coinCount = 0;
 
-    public event Action<Coin> CoinCollect;
+    public event Action<CollectibleItem> ItemCollect;
 
     private void Awake()
     {
@@ -17,20 +18,17 @@ public class ItemCollector : MonoBehaviour
     {
         if (other.TryGetComponent(out CollectibleItem item))
         {
+            item.Collect();
+
+            ItemCollect?.Invoke(item);
+
             if (item is Coin coin)
             {
-                CoinCollect?.Invoke(coin);
-
                 _coinCount += coin.Amount;
             }
             else if (item is AidKit aidKit)
             {
-                if (_health != null)
-                {
-                    _health.Increase(aidKit.HealAmount);
-
-                    Destroy(item.gameObject);
-                }
+                _health.Increase(aidKit.HealAmount);
             }
         }
     }

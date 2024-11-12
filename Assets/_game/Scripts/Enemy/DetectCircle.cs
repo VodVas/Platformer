@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
 public class DetectCircle : MonoBehaviour
 {
-    [SerializeField] private EnemyAI _enemyAI;
+    public event Action<Transform> TriggerEnterEvent;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player _))
+        if (other.TryGetComponent(out Player player))
         {
-            _enemyAI.SetPlayer(other.transform);
+            TriggerEnterEvent?.Invoke(player.transform);
         }
     }
 }
