@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47573b33b9d25024aa3eeebe54281bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _respawnDelay: 50
+  _respawnDelay: 1
   _coinPrefab: {fileID: 6740038359852090305, guid: 633c679c53b7d2f499777728513abc8b, type: 3}
   _coinTransforms:
   - {fileID: 1088236143}
