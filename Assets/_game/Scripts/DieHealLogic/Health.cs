@@ -4,11 +4,11 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float _max = 100;
-    public float Max => _max;
-
-    public float Value { get; private set; }
 
     public event Action HealthChange;
+
+    public float Max => _max;
+    public float Value { get; private set; }
 
     private void Start()
     {

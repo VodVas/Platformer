@@ -5,11 +5,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class VolumeSlider : MonoBehaviour
 {
+    private const float DecibelsMultiplier = 20f;
+
     [SerializeField] private AudioMixerGroup _audioMixer;
 
     private Slider _slider;
     private float _maxVolume = 0f;
     private float _minVolume = -80f;
+    private float _minValueLimit = 0.0001f;
+    private float _maxValueLimit = 1f;
 
     private void Awake()
     {
@@ -18,9 +22,7 @@ public class VolumeSlider : MonoBehaviour
 
     private void Start()
     {
-        string parameterName = _audioMixer.name;
-
-        if (_audioMixer.audioMixer.GetFloat(parameterName, out float currentVolume))
+        if (_audioMixer.audioMixer.GetFloat(_audioMixer.name, out float currentVolume))
         {
             _slider.value = Mathf.InverseLerp(_minVolume, _maxVolume, currentVolume);
         }
@@ -38,9 +40,6 @@ public class VolumeSlider : MonoBehaviour
 
     private void OnSliderValueChanged(float value)
     {
-        string parameterName = _audioMixer.name;
-        float newVolume = Mathf.Lerp(_minVolume, _maxVolume, value);
-
-        _audioMixer.audioMixer.SetFloat(parameterName, newVolume);
+        _audioMixer.audioMixer.SetFloat(_audioMixer.name, Mathf.Log10(Mathf.Clamp(value, _minValueLimit, _maxValueLimit)) * DecibelsMultiplier);
     }
 }
