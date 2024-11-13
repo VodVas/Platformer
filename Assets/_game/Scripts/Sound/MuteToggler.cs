@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio; 
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Toggle))]
 public class MuteToggler : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup _audioMixer;
