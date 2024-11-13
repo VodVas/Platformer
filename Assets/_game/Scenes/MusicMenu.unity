@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 42440822}
   - component: {fileID: 42440821}
   m_Layer: 5
-  m_Name: "\u041E\u0431\u0449\u0430\u044F \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
+  m_Name: MasterVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,8 +410,7 @@ GameObject:
   - component: {fileID: 118214226}
   - component: {fileID: 118214225}
   m_Layer: 5
-  m_Name: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u0444\u043E\u043D\u043E\u0432\u043E\u0439
-    \u043C\u0443\u0437\u044B\u043A\u0438"
+  m_Name: BackgroundSoundVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,9 +615,9 @@ RectTransform:
   - {fileID: 657826644}
   - {fileID: 2142448592}
   - {fileID: 1099676128}
-  - {fileID: 118214224}
-  - {fileID: 620976097}
   - {fileID: 42440820}
+  - {fileID: 620976097}
+  - {fileID: 118214224}
   - {fileID: 920662767}
   - {fileID: 991027248}
   - {fileID: 1897507117}
@@ -890,7 +889,7 @@ GameObject:
   - component: {fileID: 620976099}
   - component: {fileID: 620976098}
   m_Layer: 5
-  m_Name: "\u0413\u0440\u043E\u043C\u043A \u044D\u0444\u0444\u0435\u043A\u0442\u043E\u0432"
+  m_Name: SoundFXVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1352,7 +1351,7 @@ GameObject:
   - component: {fileID: 920662768}
   - component: {fileID: 920662769}
   m_Layer: 5
-  m_Name: "\u0412\u043A\u043B/\u0412\u044B\u043A\u043B \u0437\u0432\u0443\u043A"
+  m_Name: Mute Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1452,7 +1451,7 @@ GameObject:
   - component: {fileID: 991027249}
   - component: {fileID: 991027250}
   m_Layer: 5
-  m_Name: "Slider \u041E\u0431\u0449\u0430\u044F \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
+  m_Name: Slider MasterVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2722,8 +2721,7 @@ GameObject:
   - component: {fileID: 1420558186}
   - component: {fileID: 1420558187}
   m_Layer: 5
-  m_Name: "Slider \u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u0444\u043E\u043D\u043E\u0432\u043E\u0439
-    \u043C\u0443\u0437\u044B\u043A\u0438"
+  m_Name: Slider BackgroundSoundVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3371,7 +3369,7 @@ GameObject:
   - component: {fileID: 1897507118}
   - component: {fileID: 1897507119}
   m_Layer: 5
-  m_Name: "Slider \u044D\u0444\u0444\u0435\u043A\u0442\u044B"
+  m_Name: Slider SoundFXVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

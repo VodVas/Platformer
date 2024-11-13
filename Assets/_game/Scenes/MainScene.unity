@@ -150,6 +150,14 @@ PrefabInstance:
       propertyPath: _enemyAI
       value: 
       objectReference: {fileID: 1497513531}
+    - target: {fileID: 1479184642691208874, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479184642691208874, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1559723177850032785, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.5624828
@@ -178,13 +186,17 @@ PrefabInstance:
       propertyPath: _detectCircle
       value: 
       objectReference: {fileID: 800024688}
+    - target: {fileID: 2665117848545288562, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 682763332}
     - target: {fileID: 3450985353353077569, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
       propertyPath: m_Name
       value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 3479281556470490879, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
       propertyPath: _max
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3479281556470490879, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
       propertyPath: _maxHealth
@@ -768,6 +780,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd1ce3004ea25aa4892d9f9f0992dd7d, type: 3}
+--- !u!20 &682763332 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2642764852751687546, guid: 610b373899e63a741b70c330bd6af556, type: 3}
+  m_PrefabInstance: {fileID: 736063156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &736063156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -776,6 +793,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 302496980539270564, guid: 610b373899e63a741b70c330bd6af556, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 302496980539270564, guid: 610b373899e63a741b70c330bd6af556, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1109648868421926962, guid: 610b373899e63a741b70c330bd6af556, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1142,6 +1167,14 @@ PrefabInstance:
       propertyPath: _enemyAI
       value: 
       objectReference: {fileID: 340929172}
+    - target: {fileID: 1479184642691208874, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479184642691208874, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1559723177850032785, guid: dfe2e6f3eb351484fa499b45183a6f5c, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.5624828
