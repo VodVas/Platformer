@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 42440822}
   - component: {fileID: 42440821}
   m_Layer: 5
-  m_Name: "\u041E\u0431\u0449 \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
+  m_Name: "\u041E\u0431\u0449\u0430\u044F \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,7 +410,8 @@ GameObject:
   - component: {fileID: 118214226}
   - component: {fileID: 118214225}
   m_Layer: 5
-  m_Name: "\u0413\u0440\u043E\u043C\u043A \u0444\u043E\u043D \u043C\u0443\u0437\u044B\u043A\u0438"
+  m_Name: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u0444\u043E\u043D\u043E\u0432\u043E\u0439
+    \u043C\u0443\u0437\u044B\u043A\u0438"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,13 +613,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 920662767}
   - {fileID: 657826644}
   - {fileID: 2142448592}
   - {fileID: 1099676128}
   - {fileID: 118214224}
   - {fileID: 620976097}
   - {fileID: 42440820}
+  - {fileID: 920662767}
   - {fileID: 991027248}
   - {fileID: 1897507117}
   - {fileID: 1420558185}
@@ -889,7 +890,7 @@ GameObject:
   - component: {fileID: 620976099}
   - component: {fileID: 620976098}
   m_Layer: 5
-  m_Name: "\u0413\u0440\u043E\u043C\u043A 123"
+  m_Name: "\u0413\u0440\u043E\u043C\u043A \u044D\u0444\u0444\u0435\u043A\u0442\u043E\u0432"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b84b4fa46f064aa3afd04d01f9432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 24100000, guid: 989e4aef6d4ff0d49bbfd9dc4891f709, type: 2}
+  _audioMixer: {fileID: 24300002, guid: 989e4aef6d4ff0d49bbfd9dc4891f709, type: 2}
 --- !u!1 &991027247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1452,7 @@ GameObject:
   - component: {fileID: 991027249}
   - component: {fileID: 991027250}
   m_Layer: 5
-  m_Name: "Slider \u041E\u0431\u0449 \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
+  m_Name: "Slider \u041E\u0431\u0449\u0430\u044F \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1539,7 +1540,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 991027247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5831737c01cb27b4a9e40f7aff4dfff1, type: 3}
+  m_Script: {fileID: 11500000, guid: c61966479bf31b54897ecb0a3d2752fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24300002, guid: 989e4aef6d4ff0d49bbfd9dc4891f709, type: 2}
@@ -2721,7 +2722,8 @@ GameObject:
   - component: {fileID: 1420558186}
   - component: {fileID: 1420558187}
   m_Layer: 5
-  m_Name: "Slider \u0413\u0440\u043E\u043C\u043A \u0444\u043E\u043D \u043C\u0443\u0437\u044B\u043A\u0438"
+  m_Name: "Slider \u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u0444\u043E\u043D\u043E\u0432\u043E\u0439
+    \u043C\u0443\u0437\u044B\u043A\u0438"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2809,7 +2811,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1420558184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b11482750ba2d574cb73c5d54aae6d22, type: 3}
+  m_Script: {fileID: 11500000, guid: c61966479bf31b54897ecb0a3d2752fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: -6446940591761033030, guid: 989e4aef6d4ff0d49bbfd9dc4891f709, type: 2}
@@ -3369,7 +3371,7 @@ GameObject:
   - component: {fileID: 1897507118}
   - component: {fileID: 1897507119}
   m_Layer: 5
-  m_Name: Slider 123
+  m_Name: "Slider \u044D\u0444\u0444\u0435\u043A\u0442\u044B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3457,7 +3459,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1897507116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2e43420d1064ca45b985a288a53d7d1, type: 3}
+  m_Script: {fileID: 11500000, guid: c61966479bf31b54897ecb0a3d2752fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: -123518286734687941, guid: 989e4aef6d4ff0d49bbfd9dc4891f709, type: 2}

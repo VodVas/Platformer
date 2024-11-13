@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public abstract class VolumeSlider : MonoBehaviour
+[RequireComponent(typeof(Slider))]
+public class VolumeSlider : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup _audioMixer;
 
@@ -17,27 +18,29 @@ public abstract class VolumeSlider : MonoBehaviour
 
     private void Start()
     {
-        if (_audioMixer.audioMixer.GetFloat(GetVolumeParameterName(), out float currentVolume))
+        string parameterName = _audioMixer.name;
+
+        if (_audioMixer.audioMixer.GetFloat(parameterName, out float currentVolume))
         {
             _slider.value = Mathf.InverseLerp(_minVolume, _maxVolume, currentVolume);
         }
+    }
 
+    private void OnEnable()
+    {
         _slider.onValueChanged.AddListener(OnSliderValueChanged);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        if (_slider != null)
-        {
-            _slider.onValueChanged.RemoveListener(OnSliderValueChanged);
-        }
+        _slider.onValueChanged.RemoveListener(OnSliderValueChanged);
     }
 
     private void OnSliderValueChanged(float value)
     {
+        string parameterName = _audioMixer.name;
         float newVolume = Mathf.Lerp(_minVolume, _maxVolume, value);
-        _audioMixer.audioMixer.SetFloat(GetVolumeParameterName(), newVolume);
-    }
 
-    protected abstract string GetVolumeParameterName();
+        _audioMixer.audioMixer.SetFloat(parameterName, newVolume);
+    }
 }

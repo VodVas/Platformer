@@ -2,12 +2,11 @@ using UnityEngine;
 using UnityEngine.Audio; 
 using UnityEngine.UI;
 
-public class MasterSoundToggle : MonoBehaviour
+public class MuteToggler : MonoBehaviour
 {
-    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private AudioMixerGroup _audioMixer;
 
     private Toggle _toggle;
-
     private float _maxVolume = 0f;
     private float _minVolume = -80f;
 
@@ -18,12 +17,18 @@ public class MasterSoundToggle : MonoBehaviour
 
     private void Start()
     {
-        _audioMixer.GetFloat(AudioMixerParameterKeeper.MasterVolume, out float currentVolume);
-        _toggle.isOn = currentVolume > -79f;
+        if (_audioMixer.audioMixer.GetFloat(_audioMixer.name, out float currentVolume))
+        {
+            _toggle.isOn = currentVolume > -79f;
+        }
+    }
+
+    private void OnEnable()
+    {
         _toggle.onValueChanged.AddListener(ToggleMusic);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _toggle.onValueChanged.RemoveListener(ToggleMusic);
     }
@@ -32,11 +37,11 @@ public class MasterSoundToggle : MonoBehaviour
     {
         if (isEnabled)
         {
-            _audioMixer.SetFloat(AudioMixerParameterKeeper.MasterVolume, _maxVolume);
+            _audioMixer.audioMixer.SetFloat(_audioMixer.name, _maxVolume);
         }
         else
         {
-            _audioMixer.SetFloat(AudioMixerParameterKeeper.MasterVolume, _minVolume);
+            _audioMixer.audioMixer.SetFloat(_audioMixer.name, _minVolume);
         }
     }
 }
