@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
     [SerializeField, Range(0, 100)] private float _max = 100;
 
     public event Action Changed;
+    public event Action AlmostDied;
 
     public float Max => _max;
     public float Value { get; private set; }
@@ -14,6 +15,14 @@ public class Health : MonoBehaviour
     {
         Value = _max;
         Changed?.Invoke();
+    }
+
+    private void Update()
+    {
+        if (Value < 1)
+        {
+            AlmostDied?.Invoke();
+        }
     }
 
     public void Increase(int healAmount)
@@ -25,6 +34,18 @@ public class Health : MonoBehaviour
     public void Decrease(int damage)
     {
         Value = Mathf.Max(Value - damage, 0);
+        Changed?.Invoke();
+    }
+
+    public void Decrease(float damage)
+    {
+        Value = Mathf.Max(Value - damage, 0);
+        Changed?.Invoke();
+    }
+
+    public void Increase(float healAmount)
+    {
+        Value = Mathf.Min(Value + healAmount, _max);
         Changed?.Invoke();
     }
 }

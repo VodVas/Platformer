@@ -4,11 +4,11 @@ public class Jump : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private float _jumpForce;
-    private Utility _utility;
+    private GroundDetector _utility;
 
     private void Awake()
     {
-        _utility = GetComponent<Utility>();
+        _utility = GetComponent<GroundDetector>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 

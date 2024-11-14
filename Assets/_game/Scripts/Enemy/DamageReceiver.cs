@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DamageReceiver : MonoBehaviour
 {
-    [SerializeField] private int _input = 5;
+    [SerializeField] private int _value = 5;
 
     private DamageHandler _damageHandler;
 
@@ -15,7 +15,7 @@ public class DamageReceiver : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Weapon _))
         {
-            _damageHandler.TakeDamage(_input);
+            _damageHandler.TakeDamage(_value);
         }
     }
 }

@@ -98,8 +98,7 @@ GameObject:
   - component: {fileID: 3479281556470490879}
   - component: {fileID: 7359242567155355706}
   - component: {fileID: 2525434366667101859}
-  - component: {fileID: 8434152277370692169}
-  - component: {fileID: 6594185396675367293}
+  - component: {fileID: 5814708405673329463}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -325,7 +324,7 @@ MonoBehaviour:
   _offsetToPlayer: 2
   _detectCircle: {fileID: 0}
   _huntCircle: {fileID: 0}
---- !u!114 &8434152277370692169
+--- !u!114 &5814708405673329463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,19 +333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2204509773397305259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e60d34c5db1f8b1428463c097de01112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6594185396675367293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2204509773397305259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb49d8d59d0afb4588d335b6224d88e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2006e5adf79171a4e9a42fac86b7c983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3450985353353077569

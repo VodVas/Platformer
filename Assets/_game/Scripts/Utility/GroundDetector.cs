@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Utility : MonoBehaviour
+public class GroundDetector : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private float _minYVelocity = 0.01f;

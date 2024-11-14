@@ -1,11 +1,11 @@
 public class JumpState : PlayerState
 {
-    private Utility _utility;
+    private GroundDetector _utility;
     private Jump _jump;
     private Move _move;
     private InputReader _inputReader;
 
-    public JumpState(PlayerStateMachine playerController, Utility utility, Jump jump, Move move, InputReader inputReader) : base(playerController)
+    public JumpState(PlayerStateMachine playerController, GroundDetector utility, Jump jump, Move move, InputReader inputReader) : base(playerController)
     {
         _utility = utility;
         _jump = jump;

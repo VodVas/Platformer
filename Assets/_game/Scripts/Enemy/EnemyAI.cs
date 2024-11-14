@@ -1,8 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MoveBetweenPoints))]
-[RequireComponent(typeof(DetectCircle))]
-[RequireComponent(typeof(HuntCircle))]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float _chaseSpeed = 4f;

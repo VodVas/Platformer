@@ -1,13 +1,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Jump))]
-[RequireComponent(typeof(Utility))]
+[RequireComponent(typeof(GroundDetector))]
 [RequireComponent(typeof(Move))]
 public class PlayerStateMachine : MonoBehaviour
 {
     private PlayerState _currentState;
     private InputReader _inputReader;
-    private Utility _utility;
+    private GroundDetector _utility;
     private Jump _jump;
     private Move _move;
 
@@ -27,7 +27,7 @@ public class PlayerStateMachine : MonoBehaviour
         _inputReader = GetComponent<InputReader>();
         Rigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
-        _utility = GetComponent<Utility>();
+        _utility = GetComponent<GroundDetector>();
         _jump = GetComponent<Jump>();
         _move = GetComponent<Move>();
 
