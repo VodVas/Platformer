@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class SmoothHealthBarDisplay : MonoBehaviour
+public class SmoothHealthBarDisplay : HealthDisplayBase
 {
-    [SerializeField] private Health _health;
     [SerializeField] private float _smoothSpeed = 5f;
 
     private Slider _slider;
@@ -33,17 +32,7 @@ public class SmoothHealthBarDisplay : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        _health.HealthChange += OnHealthChanged;
-    }
-
-    private void OnDisable()
-    {
-        _health.HealthChange -= OnHealthChanged;
-    }
-
-    private void OnHealthChanged()
+    protected override void OnChanged()
     {
         _targetValue = _health.Value;
     }
