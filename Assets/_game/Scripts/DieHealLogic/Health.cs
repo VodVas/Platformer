@@ -4,7 +4,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float _max = 100;
-
+    private float _minValueHealth = 1;
+    
     public event Action Changed;
     public event Action AlmostDied;
 
@@ -19,7 +20,7 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        if (Value < 1)
+        if (Value < _minValueHealth)
         {
             AlmostDied?.Invoke();
         }
