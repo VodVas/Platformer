@@ -13,15 +13,25 @@ public class VampiricRadiusRenderer : MonoBehaviour
         _circle.transform.localScale = new Vector2(_vampiricAbility.Radius * _radiusMultiplier, _vampiricAbility.Radius * _radiusMultiplier);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (_vampiricAbility.IsActive)
-        {
-            _circle.SetActive(true);
-        }
-        else
-        {
-            _circle.SetActive(false);
-        }
+        _vampiricAbility.ActivatedSkill += ActivateCircle;
+        _vampiricAbility.DeactivatedSkill += DeactivateCircle;
+    }
+
+    private void OnDisable()
+    {
+        _vampiricAbility.ActivatedSkill -= ActivateCircle;
+        _vampiricAbility.DeactivatedSkill -= DeactivateCircle;
+    }
+
+    private void ActivateCircle()
+    {
+        _circle.SetActive(true);
+    }
+
+    private void DeactivateCircle()
+    {
+        _circle.SetActive(false);
     }
 }

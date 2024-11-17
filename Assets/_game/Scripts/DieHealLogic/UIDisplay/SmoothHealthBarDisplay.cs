@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class SmoothHealthBarDisplay : HealthDisplayBase
     private float _currentValue;
     private float _targetValue;
     private float _littleValue = 0.01f;
+    private Coroutine _filling;
 
     private void Awake()
     {
@@ -21,19 +23,39 @@ public class SmoothHealthBarDisplay : HealthDisplayBase
         _slider.value = _currentValue;
     }
 
-    private void Update()
+    private new void OnEnable()
     {
-        _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, _smoothSpeed * Time.deltaTime);
-        _slider.value = _currentValue;
-
-        if (Mathf.Abs(_currentValue - _targetValue) < _littleValue)
-        {
-            _currentValue = _targetValue;
-        }
+        _health.Changed += OnHealthChanged;
     }
 
-    protected override void OnChanged()
+    private new void OnDisable()
+    {
+        _health.Changed -= OnHealthChanged;
+    }
+
+    private void OnHealthChanged()
     {
         _targetValue = _health.Value;
+
+        if (_filling != null)
+        {
+            StopCoroutine(_filling);
+        }
+
+        _filling = StartCoroutine(Filling());
+    }
+
+    private IEnumerator Filling()
+    {
+        while (Mathf.Abs(_currentValue - _targetValue) > _littleValue)
+        {
+            _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, _smoothSpeed * Time.deltaTime);
+            _slider.value = _currentValue;
+
+            yield return null;
+        }
+
+        _currentValue = _targetValue;
+        _slider.value = _currentValue;
     }
 }

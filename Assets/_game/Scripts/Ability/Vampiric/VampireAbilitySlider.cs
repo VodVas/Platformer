@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,6 @@ public class VampireAbilitySlider : MonoBehaviour
     private float _currentValue = 0f;
     private float _maxValue = 1f;
     private float _minValue = 0f;
-    
 
     private void Awake()
     {
@@ -18,27 +18,63 @@ public class VampireAbilitySlider : MonoBehaviour
         _slider.value = _currentValue;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (_vampireAbility.IsActive)
+        _vampireAbility.ActivatedSkill += StartFilling;
+        _vampireAbility.DeactivatedSkill += StartUnfilling;
+    }
+
+    private void OnDisable()
+    {
+        _vampireAbility.ActivatedSkill -= StartFilling;
+        _vampireAbility.DeactivatedSkill -= StartUnfilling;
+    }
+
+    private void StartFilling()
+    {
+        StartCoroutine(Fill());
+    }
+
+    private void StartUnfilling()
+    {
+        StartCoroutine(UnFill());
+    }
+
+    private IEnumerator Fill()
+    {
+        float fillRate = 1f / _vampireAbility.Duration;
+
+        while (_currentValue < _maxValue)
         {
-            _currentValue += Time.deltaTime / _vampireAbility.Duration;
+            _currentValue += fillRate * Time.deltaTime;
 
             if (_currentValue > _maxValue)
             {
                 _currentValue = _maxValue;
             }
+
+            _slider.value = _currentValue;
+
+            yield return null;
         }
-        else
+    }
+
+    private IEnumerator UnFill()
+    {
+        float unfillRate = 1f / _vampireAbility.Cooldown;
+
+        while (_currentValue > _minValue)
         {
-            _currentValue -= Time.deltaTime / _vampireAbility.Cooldown;
+            _currentValue -= unfillRate * Time.deltaTime;
 
             if (_currentValue < _minValue)
             {
                 _currentValue = _minValue;
             }
-        }
 
-        _slider.value = _currentValue;
+            _slider.value = _currentValue;
+
+            yield return null;
+        }
     }
 }

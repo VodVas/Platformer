@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectsInRoundFinder))]
 public class VampireAbility : MonoBehaviour
 {
-    private const string Vamp = "Vamp";
-
     [SerializeField] private float _damage = 3;
 
     [field: SerializeField] public float Radius { get; private set; } = 10f;
@@ -15,6 +14,9 @@ public class VampireAbility : MonoBehaviour
     private Health _playerHealth;
     private WaitForSeconds _wait;
     private ObjectsInRoundFinder _objectsFinder;
+
+    public event Action ActivatedSkill;
+    public event Action DeactivatedSkill;
 
     public float Duration { get; private set; } = 6f;
     public float Cooldown { get; private set; } = 4f;
@@ -30,7 +32,7 @@ public class VampireAbility : MonoBehaviour
 
     private void Update()
     {
-        if (_canUse == true && Input.GetButtonDown(Vamp))
+        if (_canUse && Input.GetKeyDown(KeyCode.E))
         {
             Activate();
         }
@@ -38,6 +40,7 @@ public class VampireAbility : MonoBehaviour
 
     public void Activate()
     {
+        ActivatedSkill?.Invoke();
 
         if (IsActive == false)
         {
@@ -58,18 +61,18 @@ public class VampireAbility : MonoBehaviour
 
             if (nearestEnemy != null)
             {
-                if (nearestEnemy.TryGetComponent(out Enemy enemy))
-                {
-                    enemy.ApplyDamage(_damage * Time.deltaTime);
+                float damageToDeal = _damage * Time.deltaTime;
+                float actualDamage = nearestEnemy.ApplyDamage(damageToDeal);
 
-                    _playerHealth.Increase(_damage * Time.deltaTime);
-                }
+                _playerHealth.Increase(actualDamage);
             }
 
             timer += Time.deltaTime;
 
             yield return null;
         }
+
+        DeactivatedSkill?.Invoke();
 
         IsActive = false;
 

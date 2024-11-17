@@ -3,15 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
 {
-    private Health health;
+    private Health _health;
 
     private void Awake()
     {
-        health = GetComponent<Health>();
+        _health = GetComponent<Health>();
     }
 
-    public void ApplyDamage(float damage)
+    public float ApplyDamage(float damage)
     {
-        health.Decrease(damage);
+        _health.Decrease(damage);
+
+        return damage;
     }
 }

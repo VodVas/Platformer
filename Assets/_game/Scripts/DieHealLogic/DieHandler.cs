@@ -12,12 +12,12 @@ public class DieHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _health.AlmostDied += Die;
+        _health.AlmostDead += Die;
     }
 
     private void OnDisable()
     {
-        _health.AlmostDied -= Die;
+        _health.AlmostDead -= Die;
     }
 
     public void Die()

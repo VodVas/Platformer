@@ -14,5 +14,7 @@ public abstract class HealthDisplayBase : MonoBehaviour
         _health.Changed -= OnChanged;
     }
 
-    protected abstract void OnChanged();
+    protected virtual void OnChanged() 
+    {
+    }
 }
